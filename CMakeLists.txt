@@ -9,5 +9,5 @@ add_executable(week2tutorial_app main.cpp PluginWrapper.cpp)
 add_custom_command(
         TARGET ${PROJECT_NAME}  PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
-        ${CMAKE_SOURCE_DIR}/../week2tutorial/cmake-build-debug/libweek2tutorial.dll
+        ${CMAKE_SOURCE_DIR}/../sysprog-week2-app/cmake-build-debug/libweek2tutorial.dll
         ${CMAKE_SOURCE_DIR}/cmake-build-debug/plugins/libweek2tutorial.plug)
