@@ -7,8 +7,8 @@ namespace sp {
     class IPlugin {
         public:
             virtual ~IPlugin() = default;
+            virtual void convert(const std::string& path) = 0;
             virtual std::string name() const = 0;
-            virtual std::string description() const = 0;
     };
 }
 

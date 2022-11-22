@@ -6,6 +6,7 @@
 
 #include "PluginWrapper.hpp"
 #include "IPlugin.hpp"
+namespace fs = std::filesystem;
 
 std::vector<std::string> scan_dir(const std::string& path, const std::string& ext) {
     std::vector<std::string> plugins;
@@ -37,10 +38,24 @@ int main(int argc, char* argv[]) {
             objects.emplace_back(func());
         }
 
+        fs::path path = "../file.txt";
+
         // (4) call methods
+        std::cout << "Choose which plugin to use:\n";
         for (const auto& obj : objects) {
-            std::cout << obj->name() << ": " << obj->description() << '\n';
+            std::cout << obj->name() << '\n';
         }
+
+        std::string raw{};
+        std::getline(std::cin, raw);
+        std::string input{};
+        std::stringstream(raw) >> input;
+        for (const auto& obj : objects) {
+            if (input == obj->name()) {
+                obj->convert(absolute(path).string());
+            }
+        }
+
     } catch (const std::exception& ex) {
         std::cerr << ex.what() << std::endl;
         return 1;
